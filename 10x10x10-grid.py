@@ -1,10 +1,14 @@
 import matplotlib.pyplot as plt
 from mpl_toolkits.mplot3d import Axes3D
 
-# Define the range for each axis
-x_range = 10
-y_range = 10
-z_range = 10
+# Range for each axis
+x_range = 4
+y_range = 4
+z_range = 4
+
+# Enable or disable display of even and odd numbers
+show_even_numbers = True
+show_odd_numbers = False
 
 # Create a new figure
 fig = plt.figure()
@@ -19,10 +23,10 @@ for ix in range(x_range):
             x.append(ix)
             y.append(iy)
             z.append(iz)
-            if i % 2 == 0:  # Check if 'i' is even
+            if (i % 2 == 0 and show_even_numbers) or (i % 2 != 0 and show_odd_numbers):
                 s.append(str(i))
             else:
-                s.append("")  # Empty string for odd numbers
+                s.append("")  # Empty string for numbers not to be shown
             i += 1
 
 # Plot the points
