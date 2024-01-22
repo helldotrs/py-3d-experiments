@@ -26,4 +26,17 @@ for ix in range(x_range):
             i += 1
 
 # Plot the points
-scatter = ax.scatter(x, y,
+scatter = ax.scatter(x, y, z)
+
+# Annotate each point
+for i in range(len(x)):
+    if s[i]:  # Only annotate if the string is not empty
+        ax.text(x[i], y[i], z[i], s[i], size=10, zorder=1, color='k')
+
+# Set labels
+ax.set_xlabel('X Axis')
+ax.set_ylabel('Y Axis')
+ax.set_zlabel('Z Axis')
+
+# Show the plot
+plt.show()
