@@ -1,5 +1,3 @@
-#pip install matplotlib
-
 import matplotlib.pyplot as plt
 from mpl_toolkits.mplot3d import Axes3D
 
@@ -16,7 +14,10 @@ for ix in range(10):
             x.append(ix)
             y.append(iy)
             z.append(iz)
-            s.append(str(i))
+            if i % 2 == 0:  # Check if 'i' is even
+                s.append(str(i))
+            else:
+                s.append("")  # Empty string for odd numbers
             i += 1
 
 # Plot the points
@@ -24,7 +25,8 @@ scatter = ax.scatter(x, y, z)
 
 # Annotate each point
 for i in range(len(x)):
-    ax.text(x[i], y[i], z[i], s[i], size=10, zorder=1, color='k')
+    if s[i]:  # Only annotate if the string is not empty
+        ax.text(x[i], y[i], z[i], s[i], size=10, zorder=1, color='k')
 
 # Set labels
 ax.set_xlabel('X Axis')
