@@ -7,8 +7,8 @@ from mpl_toolkits.mplot3d import Axes3D
 fig = plt.figure()
 ax = fig.add_subplot(111, projection='3d')
 
-# Generate grid points
-x, y, z = [], [], []
+# Generate grid points and annotations
+x, y, z, s = [], [], [], []
 i = 0
 for ix in range(10):
     for iy in range(10):
@@ -16,10 +16,15 @@ for ix in range(10):
             x.append(ix)
             y.append(iy)
             z.append(iz)
+            s.append(str(i))
             i += 1
 
 # Plot the points
-ax.scatter(x, y, z)
+scatter = ax.scatter(x, y, z)
+
+# Annotate each point
+for i in range(len(x)):
+    ax.text(x[i], y[i], z[i], s[i], size=10, zorder=1, color='k')
 
 # Set labels
 ax.set_xlabel('X Axis')
