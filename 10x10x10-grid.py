@@ -1,46 +1,54 @@
+# Importing necessary libraries
 import matplotlib.pyplot as plt
 from mpl_toolkits.mplot3d import Axes3D
 
-# Range for each axis
-x_range = 4
-y_range = 4
-z_range = 4
+# Setting the range for each axis
+x_range = 3
+y_range = 3
+z_range = 2
 
-# Enable or disable display of even and odd numbers
+# Deciding whether to show even and odd numbers
 show_even_numbers = True
-show_odd_numbers = False
+show_odd_numbers = True
 
-# Create a new figure
-fig = plt.figure()
-ax = fig.add_subplot(111, projection='3d')
+# Creating a 3D plot
+fig = plt.figure()  # Creates a new figure for plotting
+ax = fig.add_subplot(111, projection='3d')  # Adds a 3D subplot
 
-# Generate grid points and annotations
-x, y, z, s = [], [], [], []
-i = 0
+# Preparing lists to store coordinates and labels
+x_coordinates = []
+y_coordinates = []
+z_coordinates = []
+labels = []
+
+# Counter for generating numbers at each point
+counter = 0
+
+# Generating points in the 3D space
 for ix in range(x_range):
     for iy in range(y_range):
         for iz in range(z_range):
-            x.append(ix)
-            y.append(iy)
-            z.append(iz)
-            if (i % 2 == 0 and show_even_numbers) or (i % 2 != 0 and show_odd_numbers):
-                s.append(str(i))
+            # Adding the current point's coordinates to the lists
+            x_coordinates.append(ix)
+            y_coordinates.append(iy)
+            z_coordinates.append(iz)
+
+            # Deciding whether to add a label based on even/odd preference
+            if (counter % 2 == 0 and show_even_numbers) or (counter % 2 != 0 and show_odd_numbers):
+                labels.append(str(counter))
             else:
-                s.append("")  # Empty string for numbers not to be shown
-            i += 1
+                labels.append("")  # Leave the label empty if not showing the number
 
-# Plot the points
-scatter = ax.scatter(x, y, z)
+            # Incrementing the counter for the next point
+            counter += 1
 
-# Annotate each point
-for i in range(len(x)):
-    if s[i]:  # Only annotate if the string is not empty
-        ax.text(x[i], y[i], z[i], s[i], size=10, zorder=1, color='k')
+# Plotting the points on the graph
+scatter = ax.scatter(x_coordinates, y_coordinates, z_coordinates)
 
-# Set labels
-ax.set_xlabel('X Axis')
-ax.set_ylabel('Y Axis')
-ax.set_zlabel('Z Axis')
+# Annotating each point with its label
+for i in range(len(x_coordinates)):
+    if labels[i]:  # Only annotate points that have a label
+        ax.text(x_coordinates[i], y_coordinates[i], z_coordinates[i], labels[i], size=10, zorder=1, color='k')
 
-# Show the plot
-plt.show()
+# Setting labels for each axis
+ax.set_
